@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.MuiTabs-flexContainer, .mui-heg063-MuiTabs-flexContainer {
+    display: flex !important;
+    justify-content: space-evenly !important;
+}
+
+
