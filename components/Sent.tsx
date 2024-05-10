@@ -48,7 +48,7 @@ const Sent: React.FC = () => {
                                 {item.date}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap text-red-400">
-                                -{item.amount}
+                                +{item.amount}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 {item.reference}

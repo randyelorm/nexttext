@@ -1,21 +1,15 @@
-import React from "react";
-import TopTabs from "@/components/TopTab";
-import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
+import { redirect } from "next/navigation";
 
-const Home = () => {
-  return (
-    <>
-      <Navbar />
-      <div className="p-10">
-        <Hero />
-        <br />
-        <br />
-        <br />
-        <TopTabs />
-      </div>
-    </>
-  );
-};
+import { createClient } from "@/utils/supabase/Server";
+import Home from "@/components/Home";
 
-export default Home;
+export default async function PrivatePage() {
+  const supabase = createClient();
+
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect("/login");
+  }
+
+  return <Home />;
+}
