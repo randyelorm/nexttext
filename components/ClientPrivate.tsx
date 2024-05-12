@@ -1,34 +1,32 @@
-'use client'
+"use client";
 
-import {useEffect, useState} from 'react'
-import { createClient} from '@/utils/supabase/Client'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/Client";
+import { useRouter } from "next/navigation";
+
+type User = {
+  email: string;
+};
 
 const ClientRoute = () => {
-    const [user, SetUser]= useState(null)
-    const route = useRouter()
-    
+  const [user, SetUser] = useState<User | null>(null);
+  const route = useRouter();
 
+  useEffect(() => {
+    async function getUser() {
+      const supabse = createClient();
+      const { data, error } = await supabse.auth.getUser();
+      if (data?.user) {
+        SetUser(data.user as User);
+      } else {
+        alert(error);
+      }
+    }
 
-    useEffect(() => {
-        async function getUser() {
-            const supabse = createClient()
-            const {data, error} = await supabse.auth.getUser()
-            if (error || !data?.user) {
-              route.push('/login')
-            } else {
-                console.log(data?.user)
-            }
-        }
+    getUser();
+  }, [route]);
 
-        getUser()
-    }, []);
+  return user === null ? <div>user</div> : <div>{user?.email}</div>;
+};
 
-  return (
-    <div>
-      client
-    </div>
-  )
-}
-
-export default ClientRoute
+export default ClientRoute;

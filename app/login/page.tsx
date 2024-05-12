@@ -4,12 +4,11 @@ import Logo from "@/public/assets/logo.svg";
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-custom-bg2">
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="flex items-center justify-center flex-col">
           <Image src={Logo} alt="logo" />
           <br />
-          <h2 className="text-center text-bold">SIGN UP</h2>
         </div>
 
         <br />
@@ -22,8 +21,8 @@ export default function LoginPage() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="fullname"
-            name="fullname"
+            id="Username"
+            name="Username"
             type="text"
             required
           />
